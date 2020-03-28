@@ -3,7 +3,11 @@ plugins {
     id 'io.spring.dependency-management' version "1.0.9.RELEASE"
     id 'org.springframework.boot' version '2.2.5.RELEASE'
     id 'pl.allegro.tech.build.axion-release' version '1.10.1'
+    id 'com.palantir.docker' version '0.25.0'
+    id 'com.palantir.docker-run' version '0.25.0'
 }
+
+version = scmVersion.version
 
 repositories {
     mavenCentral()
@@ -27,4 +31,17 @@ test {
     useJUnitPlatform()
 }
 
-project.version = scmVersion.version
+String imageName = "hub.docker.com/tkgregory/spring-boot-api-example:$version"
+
+docker {
+    name imageName
+    files "build/libs/${bootJar.archiveFileName.get()}"
+    buildArgs([JAR_FILE: bootJar.archiveFileName.get()])
+}
+
+dockerRun {
+    name project.name
+    image imageName
+    ports '8080:8080'
+    clean true
+}
