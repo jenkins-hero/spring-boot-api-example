@@ -5,6 +5,7 @@ plugins {
     id 'pl.allegro.tech.build.axion-release' version '1.12.0'
     id 'com.palantir.docker' version '0.25.0'
     id 'com.palantir.docker-run' version '0.25.0'
+    id 'jp.classmethod.aws.cloudformation' version '0.41'
 }
 
 version = scmVersion.version
@@ -32,7 +33,8 @@ test {
     useJUnitPlatform()
 }
 
-String imageName = "tkgregory/spring-boot-api-example:$version"
+String dockerHubUsernameProperty = findProperty('dockerHubUsername') ?: 'tkgregory'
+String imageName = "${dockerHubUsernameProperty}/spring-boot-api-example:$version"
 
 docker {
     name imageName
@@ -45,4 +47,17 @@ dockerRun {
     image imageName
     ports '8080:8080'
     clean true
+}
+
+import com.amazonaws.services.cloudformation.model.Capability
+
+cloudFormation {
+    stackName "$project.name-stack"
+    stackParams([
+            SubnetID: findProperty('subnetId') ?: '',
+            ServiceName: project.name,
+            ServiceVersion: project.version,
+            DockerHubUsername: dockerHubUsernameProperty
+    ])
+    templateFile project.file("ecs.yml")
 }

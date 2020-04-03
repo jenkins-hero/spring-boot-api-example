@@ -2,9 +2,9 @@
 
 An example project to demonstrate:
 
-* how to create a Spring Boot REST API
-* how to test a Spring Boot REST API
-* how to run Spring Boot in Docker
+* how to create a Spring Boot REST API (see [article](https://tomgregory.com/building-a-spring-boot-application-in-jenkins/))
+* how to run Spring Boot in Docker and publish to Docker Hub (see [article](https://tomgregory.com/building-a-spring-boot-application-in-docker-and-jenkins/))
+* how to deploy the Spring Boot application to AWS with CloudFormation
 
 ### Testing
 
@@ -22,6 +22,14 @@ An example project to demonstrate:
 
 `./gradlew assemble docker dockerRun`
 
-### Stoppping Docker container
+### Stopping Docker container
 
 `./gradlew dockerStop`
+
+### Deploying to AWS
+
+`./gradlew awsCfnMigrateStack awsCfnWaitStackComplete -PsubnetId=<your-subnet-id>`
+
+### Deleting AWS deployment
+
+`./gradlew awsCfnDeleteStack awsCfnWaitStackComplete`
