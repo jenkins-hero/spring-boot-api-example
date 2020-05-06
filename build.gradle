@@ -51,6 +51,10 @@ dockerRun {
 
 import com.amazonaws.services.cloudformation.model.Capability
 
+aws {
+    region = findProperty('region') ?: 'us-east-1'
+}
+
 cloudFormation {
     stackName "$project.name-stack"
     stackParams([
