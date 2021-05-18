@@ -16,7 +16,7 @@
     "containerOverrides": [
       {
         "name": "kaniko",
-        "commands": [
+        "command": [
           "--context",
           "s3://${KANIKO_BUILD_CONTEXT_BUCKET_NAME}/context.tar.gz",
           "--context-sub-path",
