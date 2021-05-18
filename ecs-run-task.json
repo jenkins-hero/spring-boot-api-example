@@ -1,0 +1,33 @@
+{
+  "cluster": "${KANIKO_CLUSTER_NAME}",
+  "launchType": "FARGATE",
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "subnets": [
+        "${KANIKO_SUBNET_ID}"
+      ],
+      "securityGroups": [
+        "${KANIKO_SECURITY_GROUP_ID}"
+      ],
+      "assignPublicIp": "DISABLED"
+    }
+  },
+  "overrides": {
+    "containerOverrides": [
+      {
+        "name": "kaniko",
+        "commands": [
+          "--context",
+          "s3://${KANIKO_BUILD_CONTEXT_BUCKET_NAME}/context.tar.gz",
+          "--context-sub-path",
+          "./build/docker",
+          "--build-arg",
+          "JAR_FILE=spring-boot-api-example-0.1.0-SNAPSHOT.jar",
+          "--destination",
+          "tkgregory/kaniko-for-ecr:latest",
+          "--force"
+        ]
+      }
+    ]
+  }
+}
