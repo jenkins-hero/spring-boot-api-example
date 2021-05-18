@@ -24,7 +24,7 @@
           "--build-arg",
           "JAR_FILE=spring-boot-api-example-0.1.0-SNAPSHOT.jar",
           "--destination",
-          "${DESTINATION}",
+          "${KANIKO_REPOSITORY_URI}:latest",
           "--force"
         ]
       }
