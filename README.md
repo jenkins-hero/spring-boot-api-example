@@ -8,7 +8,7 @@ An example project to demonstrate:
 
 ## Pre-requisites
 
-* JDK 11+
+* JDK 8+
 * Docker
 
 ## Building

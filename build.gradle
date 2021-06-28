@@ -1,15 +1,15 @@
 plugins {
     id 'java'
-    id 'io.spring.dependency-management' version "1.0.10.RELEASE"
-    id 'org.springframework.boot' version '2.3.4.RELEASE'
-    id 'pl.allegro.tech.build.axion-release' version '1.12.0'
-    id 'com.palantir.docker' version '0.25.0'
-    id 'com.palantir.docker-run' version '0.25.0'
+    id 'io.spring.dependency-management' version "1.0.11.RELEASE"
+    id 'org.springframework.boot' version '2.5.0'
+    id 'pl.allegro.tech.build.axion-release' version '1.13.2'
+    id 'com.palantir.docker' version '0.26.0'
+    id 'com.palantir.docker-run' version '0.26.0'
     id 'jp.classmethod.aws.cloudformation' version '0.41'
 }
 
 version = scmVersion.version
-sourceCompatibility = 11
+sourceCompatibility = 8
 
 repositories {
     mavenCentral()
@@ -24,8 +24,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-devtools'
     implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
@@ -49,8 +49,6 @@ dockerRun {
     ports '8080:8080'
     clean true
 }
-
-import com.amazonaws.services.cloudformation.model.Capability
 
 aws {
     region = findProperty('region') ?: 'us-east-1'
