@@ -1,3 +1,5 @@
+def gv
+
 pipeline {
     agent any
 
@@ -25,32 +27,27 @@ pipeline {
     }
 
     stages {
-        stage('build frontend') {
+        stage("init") {
             steps {
-                echo 'executing yarn...'
-                nodejs('Node-10.17'){
-                     sh 'yarn install'
-                    //  sh "mvn install" //when maven is "maven 'Maven-3.8.1'" is not declared in tools
+                script {
+                    gv = load "script.groovy"
                 }
             }
         }
 
-        stage('build backend') {
+        stage('build App1') {
             steps {
                 script {
-                    echo 'building the application...'
-                    echo "building version ${NEW_VERSION}"
+                    gv.buildApp1()
+                }
+                
+            }
+        }
 
-                    //method1
-                    echo "using server credentials ..."
-                     echo "${SERVER_CREDENTIALS}"
-
-                    //method2
-                    withCredentials([
-                        usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
-                    ]){
-                        echo "${USER} ${PWD}"
-                    }
+        stage('build App2') {
+            steps {
+                script {
+                   gv.buildApp2() 
                 }
             }
         }
@@ -62,26 +59,17 @@ pipeline {
                 }
             }
             steps {
-                echo 'executing gradle...'
-
-                //method1
-                sh './gradlew -v'
-
-                //method2
-                // withGradle(){
-                //     sh './gradlew -v'
-                // }
-
-                //using maven
-                echo 'executing mvn...'
-                // sh "mvn install" //POM file must be present
+                script {
+                    gv.testApp()
+                }
             }
         }
 
         stage("deploy") {
             steps {
-                echo 'deploying the application ...'
-                echo "deploying version ${params.VERSION}"
+                script {
+                    gv.deployApp()
+                }
             }
         }
 
