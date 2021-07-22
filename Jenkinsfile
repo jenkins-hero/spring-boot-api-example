@@ -37,10 +37,10 @@ pipeline {
         stage('build backend') {
             steps {
                 echo 'building the application...'
-                echo "building version ${NEW_VERSION} ..."
+                echo "building version ${NEW_VERSION}"
 
                 //method1
-                echo "using ${SERVER_CREDENTIALS} ..."
+                echo "using server credentials ..."
                 sh "${SERVER_CREDENTIALS}"
 
                 //method2
@@ -53,6 +53,11 @@ pipeline {
         }
 
         stage('test') {
+            when {
+                expression {
+                    params.executeTests == true
+                }
+            }
             steps {
                 echo 'executing gradle...'
 
@@ -69,5 +74,13 @@ pipeline {
                 sh "mvn install"
             }
         }
+
+        stage("deploy") {
+            steps {
+                echo 'deploying the application ...'
+                echo "deploying version ${params.VERSION}"
+            }
+        }
+
     }
 }
