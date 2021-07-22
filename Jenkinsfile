@@ -5,14 +5,20 @@ pipeline {
         pollSCM '* * * * *'
     }
     stages {
-        stage('Build') {
+        stage('run frontend') {
             steps {
-                sh './gradlew assemble'
+                echo 'executing yarn'
+                nodejs('Node-10.17'){
+                     sh 'yarn install'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh './gradlew test'
+                echo 'executing gradle'
+                withGradle(){
+                    sh './gradlew -v'
+                }
             }
         }
     }
