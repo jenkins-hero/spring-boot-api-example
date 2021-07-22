@@ -30,7 +30,7 @@ pipeline {
                 echo 'executing yarn...'
                 nodejs('Node-10.17'){
                      sh 'yarn install'
-                     sh "mvn install" //when maven is "maven 'Maven-3.8.1'" is not declared in tools
+                    //  sh "mvn install" //when maven is "maven 'Maven-3.8.1'" is not declared in tools
                 }
             }
         }
@@ -71,8 +71,8 @@ pipeline {
                 // }
 
                 //using maven
-                echo 'executing gradle...'
-                sh "mvn install"
+                echo 'executing mvn...'
+                // sh "mvn install" //POM file must be present
             }
         }
 
