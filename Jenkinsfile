@@ -61,10 +61,10 @@ pipeline {
                     sh "${SERVER_CREDENTIALS}"
 
                     //method2
-                    withCredentials([
-                        usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
-                    ]){
-                    ${USER} ${PWD}
+                    // withCredentials([
+                    //     usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
+                    // ]){
+                    // sh "${USER} ${PWD}"
     }
                 }
             }
