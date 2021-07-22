@@ -29,18 +29,22 @@ pipeline {
     }
 
     stages {
-        stage("init") {
-            steps {
-                script {
-                    gv = load "script.groovy"
-                }
-            }
-        }
+        // stage("init") {
+        //     steps {
+        //         script {
+        //             gv = load "script.groovy"
+        //         }
+        //     }
+        // }
 
         stage('build App1') {
             steps {
                 script {
-                    gv.buildApp1()
+                    echo 'executing yarn...'
+                    nodejs('Node-10.17'){
+                            sh 'yarn install'
+                        //  sh "mvn install" //when maven is "maven 'Maven-3.8.1'" is not declared in tools
+                    }
                 }
                 
             }
