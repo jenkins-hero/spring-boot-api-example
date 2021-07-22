@@ -43,13 +43,13 @@ pipeline {
 
                     //method1
                     echo "using server credentials ..."
-                    sh "some script ${SERVER_CREDENTIALS}"
+                    // sh "${SERVER_CREDENTIALS}"
 
                     //method2
                     withCredentials([
                         usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
                     ]){
-                        sh "some script ${USER} ${PWD}"
+                        sh "${USER} ${PWD}"
                     }
                 }
             }
