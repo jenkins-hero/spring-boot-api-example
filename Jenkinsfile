@@ -78,7 +78,18 @@ pipeline {
             }
             steps {
                 script {
-                    gv.testApp()
+                    echo 'executing gradle...'
+                    //method1
+                    sh './gradlew -v'
+
+                    //method2
+                    // withGradle(){
+                    //     sh './gradlew -v'
+                    // }
+
+                    //using maven
+                    echo 'executing mvn...'
+                    // sh "mvn install" //POM file must be present
                 }
             }
         }
@@ -91,7 +102,8 @@ pipeline {
             }
             steps {
                 script {
-                    gv.deployApp()
+                    echo 'deploying the application ...'
+                    echo "deploying version ${params.VERSION}"
                 }
             }
         }
