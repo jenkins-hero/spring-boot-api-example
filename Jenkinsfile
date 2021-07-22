@@ -37,18 +37,20 @@ pipeline {
 
         stage('build backend') {
             steps {
-                echo 'building the application...'
-                echo "building version ${NEW_VERSION}"
+                script {
+                    echo 'building the application...'
+                    echo "building version ${NEW_VERSION}"
 
-                //method1
-                echo "using server credentials ..."
-                sh "${SERVER_CREDENTIALS}"
+                    //method1
+                    echo "using server credentials ..."
+                    sh "some script ${SERVER_CREDENTIALS}"
 
-                //method2
-                withCredentials([
-                    usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
-                ]){
-                    sh "some script ${USER} ${PWD}"
+                    //method2
+                    withCredentials([
+                        usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
+                    ]){
+                        sh "some script ${USER} ${PWD}"
+                    }
                 }
             }
         }
