@@ -57,8 +57,8 @@ pipeline {
                     echo "building version ${NEW_VERSION}"
 
                     //method1
-                    echo "deploying with ${SERVER_CREDENTIALS}"
-                    sh "${SERVER_CREDENTIALS}"
+                    // echo "deploying with ${SERVER_CREDENTIALS}"
+                    // sh "${SERVER_CREDENTIALS}"
 
                     //method2
                     // withCredentials([
