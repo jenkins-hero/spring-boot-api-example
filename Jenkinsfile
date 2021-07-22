@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        gradle 'Gradle-7.1.1' //method2 remove withGradle(){} wrapper
+    }
+
     triggers {
         pollSCM '* * * * *'
     }
@@ -16,9 +20,11 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'executing gradle'
-                withGradle(){
-                    sh './gradlew -v'
-                }
+                sh './gradlew -v'
+                
+                // withGradle(){
+                //     sh './gradlew -v'
+                // }
             }
         }
     }
