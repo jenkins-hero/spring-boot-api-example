@@ -64,8 +64,8 @@ pipeline {
                     // withCredentials([
                     //     usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
                     // ]){
-                    // sh "${USER} ${PWD}"
-    }
+                    //     sh "${USER} ${PWD}"
+                    // }
                 }
             }
         }
