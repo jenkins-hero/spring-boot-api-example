@@ -1,4 +1,5 @@
 def gv
+CODE_CHANGES = getGitChanges()
 
 pipeline {
     agent any
@@ -12,6 +13,7 @@ pipeline {
 
     environment {
         NEW_VERSION = '1.3.0'
+        BRANCH_NAME = 'dev'
         SERVER_CREDENTIALS = credentials('server-credentials') //declare here if needed in multiple stages
     }
 
@@ -66,6 +68,11 @@ pipeline {
         }
 
         stage("deploy") {
+            when {
+                expression {
+                    (BRANCH_NAME == 'dev' || BRANCH_NAME == 'test') && CODE_CHANGES == true
+                }
+            }
             steps {
                 script {
                     gv.deployApp()

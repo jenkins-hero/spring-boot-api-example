@@ -11,14 +11,14 @@ def buildApp2() {
     echo "building version ${NEW_VERSION}"
 
     //method1
-    echo "using server credentials ..."
-    //  echo "${SERVER_CREDENTIALS}"
+    echo "deploying with ${SERVER_CREDENTIALS}"
+    sh "${SERVER_CREDENTIALS}"
 
     //method2
     withCredentials([
         usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
     ]){
-        // echo "${USER} ${PWD}"
+        sh "${USER} ${PWD}"
     }
 }
 
