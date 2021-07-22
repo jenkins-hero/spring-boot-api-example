@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     //only gradle, maven and jdk are supported
-    //remove 'gradle 'Gradle-7.1.1'' from here if using 'withGradle(){}' wrapper within steps
+    //remove 'gradle "Gradle-7.1.1'" from here if using 'withGradle(){}' wrapper within steps
     tools {
-        maven 'Maven-3.6.3'
+        maven 'Maven-3.8.1'
         gradle 'Gradle-7.1.1'
     }
 
@@ -30,6 +30,7 @@ pipeline {
                 echo 'executing yarn...'
                 nodejs('Node-10.17'){
                      sh 'yarn install'
+                     sh "mvn install" //when maven is "maven 'Maven-3.8.1'" is not declared in tools
                 }
             }
         }
