@@ -9,7 +9,6 @@ plugins {
 }
 
 version = scmVersion.version
-sourceCompatibility = 8
 
 repositories {
     mavenCentral()
@@ -63,4 +62,10 @@ cloudFormation {
             DockerHubUsername: dockerHubUsernameProperty
     ])
     templateFile project.file("ecs.yml")
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
