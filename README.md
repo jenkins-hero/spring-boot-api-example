@@ -1,3 +1,5 @@
+[![Gradle Build](https://github.com/tkgregory/spring-boot-api-example/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/tkgregory/spring-boot-api-example/actions/workflows/gradle-build.yml)
+
 ## Overview
 
 An example project to demonstrate:
