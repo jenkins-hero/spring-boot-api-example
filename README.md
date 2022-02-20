@@ -1,4 +1,4 @@
-[![Gradle Build](https://github.com/tkgregory/spring-boot-api-example/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/tkgregory/spring-boot-api-example/actions/workflows/gradle-build.yml)
+[![CI](https://github.com/tkgregory/spring-boot-api-example/actions/workflows/gradle.yml/badge.svg)](https://github.com/tkgregory/spring-boot-api-example/actions/workflows/gradle.yml)
 
 ## Overview
 
