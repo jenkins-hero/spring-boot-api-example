@@ -11,7 +11,7 @@ pipeline {
         ansiColor('xterm')
         //disableConcurrentBuilds()
     }
-    stages {i
+    stages {
         stage('Unit Tests') {
             agent {
                 kubernetes {
