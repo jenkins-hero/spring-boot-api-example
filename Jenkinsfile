@@ -15,7 +15,7 @@ pipeline {
         stage('Unit Tests') {
             agent {
                 kubernetes {
-                    cloud "jenkins-cloud"
+                    //cloud "jenkins-cloud"
                     //namespace 'jenkins'
                     defaultContainer 'gradle'
                     yamlFile 'build.yaml'
