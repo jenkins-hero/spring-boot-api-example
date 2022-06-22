@@ -4,6 +4,8 @@ metadata:
   name: gradle-pod
   namespace: jenkins
 spec:
+  securityContext:
+    runAsUser: 1000
   serviceAccountName: default
   containers:
     - name: gradle
