@@ -9,14 +9,14 @@ pipeline {
     agent none
     options {
         ansiColor('xterm')
-        #disableConcurrentBuilds()
+        //disableConcurrentBuilds()
     }
-    stages {
+    stages {i
         stage('Unit Tests') {
             agent {
                 kubernetes {
                     cloud "jenkins-cloud"
-                    #namespace 'jenkins'
+                    //namespace 'jenkins'
                     defaultContainer 'gradle'
                     yamlFile 'build.yaml'
                 }
