@@ -68,3 +68,10 @@ java {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
+
+task('doStuff', type: Copy) {
+    println 'congiguring task'
+    doFirst {
+        println 'running task'
+    }
+}
